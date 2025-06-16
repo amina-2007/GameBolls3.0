@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace GameBolls3._0
 {
-    class CreateField//Его ждет деление
+    class CreateField//Его ждет деление 
     {
         public Image ImgRedBall, ImgOrangeBall, ImgColumn, ImgBottom, ImgEmpty, ImgBlueBall;
         public void DrawColumn(int i, DataGridView grid, string level)
