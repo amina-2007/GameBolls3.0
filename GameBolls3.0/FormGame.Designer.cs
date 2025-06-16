@@ -38,59 +38,65 @@ namespace GameBolls3._0
             // 
             // buttonShowScores
             // 
-            this.buttonShowScores.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.buttonShowScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonShowScores.Location = new System.Drawing.Point(245, 363);
+            this.buttonShowScores.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.buttonShowScores.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShowScores.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.buttonShowScores.Location = new System.Drawing.Point(92, 267);
             this.buttonShowScores.Name = "buttonShowScores";
-            this.buttonShowScores.Size = new System.Drawing.Size(268, 101);
+            this.buttonShowScores.Size = new System.Drawing.Size(692, 101);
             this.buttonShowScores.TabIndex = 0;
-            this.buttonShowScores.Text = "Посмотреть рейтинг";
+            this.buttonShowScores.Text = "ПОСМОТРЕТЬ РЕЙТИНГ";
             this.buttonShowScores.UseVisualStyleBackColor = false;
             this.buttonShowScores.Click += new System.EventHandler(this.buttonShowScores_Click);
             // 
             // labelChooseLevel
             // 
             this.labelChooseLevel.AutoSize = true;
-            this.labelChooseLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChooseLevel.Location = new System.Drawing.Point(101, 35);
+            this.labelChooseLevel.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChooseLevel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelChooseLevel.Location = new System.Drawing.Point(87, 36);
             this.labelChooseLevel.Name = "labelChooseLevel";
-            this.labelChooseLevel.Size = new System.Drawing.Size(557, 46);
+            this.labelChooseLevel.Size = new System.Drawing.Size(714, 98);
             this.labelChooseLevel.TabIndex = 1;
-            this.labelChooseLevel.Text = "Выбрать уровень сложности";
+            this.labelChooseLevel.Text = "КАКАЯ СЛОЖНОСТЬ?";
+            this.labelChooseLevel.Click += new System.EventHandler(this.labelChooseLevel_Click);
             // 
             // buttonLevel1
             // 
-            this.buttonLevel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.buttonLevel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonLevel1.Location = new System.Drawing.Point(37, 139);
+            this.buttonLevel1.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonLevel1.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLevel1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.buttonLevel1.Location = new System.Drawing.Point(92, 137);
             this.buttonLevel1.Name = "buttonLevel1";
-            this.buttonLevel1.Size = new System.Drawing.Size(171, 61);
+            this.buttonLevel1.Size = new System.Drawing.Size(221, 107);
             this.buttonLevel1.TabIndex = 2;
-            this.buttonLevel1.Text = "Лёгкий";
+            this.buttonLevel1.Text = "ЛЕГКАЯ!";
             this.buttonLevel1.UseVisualStyleBackColor = false;
             this.buttonLevel1.Click += new System.EventHandler(this.buttonLevel1_Click);
             // 
             // buttonLevel2
             // 
-            this.buttonLevel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.buttonLevel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonLevel2.Location = new System.Drawing.Point(283, 235);
+            this.buttonLevel2.BackColor = System.Drawing.Color.BurlyWood;
+            this.buttonLevel2.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLevel2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.buttonLevel2.Location = new System.Drawing.Point(319, 137);
             this.buttonLevel2.Name = "buttonLevel2";
-            this.buttonLevel2.Size = new System.Drawing.Size(193, 64);
+            this.buttonLevel2.Size = new System.Drawing.Size(234, 107);
             this.buttonLevel2.TabIndex = 3;
-            this.buttonLevel2.Text = "Средний";
+            this.buttonLevel2.Text = "СРЕДНЯЯ!";
             this.buttonLevel2.UseVisualStyleBackColor = false;
             this.buttonLevel2.Click += new System.EventHandler(this.buttonLevel2_Click);
             // 
             // buttonLevel3
             // 
-            this.buttonLevel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.buttonLevel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonLevel3.Location = new System.Drawing.Point(544, 138);
+            this.buttonLevel3.BackColor = System.Drawing.Color.LightCoral;
+            this.buttonLevel3.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLevel3.ForeColor = System.Drawing.Color.Maroon;
+            this.buttonLevel3.Location = new System.Drawing.Point(559, 137);
             this.buttonLevel3.Name = "buttonLevel3";
-            this.buttonLevel3.Size = new System.Drawing.Size(185, 62);
+            this.buttonLevel3.Size = new System.Drawing.Size(225, 107);
             this.buttonLevel3.TabIndex = 4;
-            this.buttonLevel3.Text = "Тяжёлый";
+            this.buttonLevel3.Text = "ТЯЖЕЛАЯ!";
             this.buttonLevel3.UseVisualStyleBackColor = false;
             this.buttonLevel3.Click += new System.EventHandler(this.buttonLevel3_Click);
             // 
@@ -98,8 +104,8 @@ namespace GameBolls3._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(800, 520);
+            this.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.ClientSize = new System.Drawing.Size(917, 506);
             this.Controls.Add(this.buttonLevel3);
             this.Controls.Add(this.buttonLevel2);
             this.Controls.Add(this.buttonLevel1);

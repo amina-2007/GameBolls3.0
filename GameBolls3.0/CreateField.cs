@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace GameBolls3._0
 {
-    class CreateField
+    class CreateField//Его ждет деление
     {
         public Image ImgRedBall, ImgOrangeBall, ImgColumn, ImgBottom, ImgEmpty, ImgBlueBall;
         public void DrawColumn(int i, DataGridView grid, string level)
@@ -17,9 +17,9 @@ namespace GameBolls3._0
             grid.Rows[3].Cells[i].Value = ImgColumn;
             grid.Rows[4].Cells[i].Value = ImgColumn;
             grid.Rows[5].Cells[i].Value = ImgColumn;
-            if (level == "3") grid.Rows[1].Cells[i].Value = ImgColumn; 
+            if (level == "3") grid.Rows[1].Cells[i].Value = ImgColumn;
         }
-        public void DrawBoll(int i, string[,] gameField, DataGridView grid, string level )
+        public void DrawBoll(int i, string[,] gameField, DataGridView grid, string level)
         {
             int min = 2;
             if (level == "3") min = 1;
@@ -34,18 +34,18 @@ namespace GameBolls3._0
                 }
             }
         }
-        public void drawField(DataGridView grid, string[,] gameField, string level)
+        public void DrawField(DataGridView grid, string[,] gameField, string level)
         {
             for (int j = 0; j < 6; j++)
             {
-                for (int i=0;i<16;i++)
+                for (int i = 0; i < 16; i++)
                 {
                     grid.Rows[j].Cells[i].Value = ImgEmpty;
                 }
             }
             int n = 16;
             if (level == "1") n = 12;
-            for (int i = 0; i <n; i++)
+            for (int i = 0; i < n; i++)
             {
                 switch (i)
                 {
@@ -66,13 +66,13 @@ namespace GameBolls3._0
                 }
             }
         }
-        public void BollColour(string[,] GameField, string level)
+        public void BallColor(string[,] GameField, string level)
         {
             for (int i = 4; i > 0; i--) { for (int j = 2; j < 15; j += 4) { GameField[i, j] = "N"; } }
             Random rnd = new Random();
             if (level == "1")
             {
-                List<string> list = new List<string> { "R", "R", "R", "O", "O", "O", "N", "N", "N" }; 
+                List<string> list = new List<string> { "R", "R", "R", "O", "O", "O", "N", "N", "N" };
 
                 for (int i = 4; i > 1; i--)
                 {
@@ -106,11 +106,11 @@ namespace GameBolls3._0
                     int i = 3;
                     if ((GameField[i, j] == "R" || GameField[i, j] == "O") && GameField[i + 1, j] == "N" && GameField[i - 1, j] == "N")
                     {
-                        GameField[i+1, j] = GameField[i, j];
+                        GameField[i + 1, j] = GameField[i, j];
                         GameField[i, j] = "N";
                     }
                 }
-                GameField[0,6]="N";
+                GameField[0, 6] = "N";
             }
             else
             {
@@ -125,7 +125,7 @@ namespace GameBolls3._0
                             GameField[i, j] = list[n];
                             list.RemoveAt(n);
                             bool onecase = (GameField[i - 1, j] == "R" || GameField[i - 1, j] == "O" || GameField[i - 1, j] == "B") && GameField[i, j] == "N";
-                            bool twocase = i <= 3 && (GameField[i, j] == "B"|| GameField[i, j] == "R" || GameField[i, j] == "O") && GameField[i + 1, j] == "N";
+                            bool twocase = i <= 3 && (GameField[i, j] == "B" || GameField[i, j] == "R" || GameField[i, j] == "O") && GameField[i + 1, j] == "N";
                             while (onecase || twocase)
                             {
                                 if (onecase)
@@ -185,7 +185,7 @@ namespace GameBolls3._0
                     }
                     for (int j = 2; j < 15; j += 4)
                     {
-                        for (int i=2; i < 4;i++)
+                        for (int i = 2; i < 4; i++)
                         {
                             if ((GameField[i, j] == "B" || GameField[i, j] == "R" || GameField[i, j] == "O") && GameField[i + 1, j] == "N" && GameField[i - 1, j] == "N")
                             {
@@ -200,3 +200,4 @@ namespace GameBolls3._0
         }
     }
 }
+    

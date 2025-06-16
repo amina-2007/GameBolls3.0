@@ -39,57 +39,62 @@ namespace GameBolls3._0
             // 
             // labelResults
             // 
+            this.labelResults.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelResults.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelResults.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelResults.ForeColor = System.Drawing.Color.Yellow;
             this.labelResults.Location = new System.Drawing.Point(0, 0);
             this.labelResults.Name = "labelResults";
-            this.labelResults.Size = new System.Drawing.Size(651, 46);
+            this.labelResults.Size = new System.Drawing.Size(1302, 65);
             this.labelResults.TabIndex = 0;
-            this.labelResults.Text = "Лучшие результаты";
+            this.labelResults.Text = "ТАБЛИЦА ЛИДЕРОВ";
             this.labelResults.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // listViewScores
             // 
+            this.listViewScores.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.listViewScores.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderLevel,
             this.columnHeaderName,
             this.columnHeaderScores,
             this.columnHeaderResult});
             this.listViewScores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listViewScores.Font = new System.Drawing.Font("Impact", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listViewScores.ForeColor = System.Drawing.Color.Yellow;
             this.listViewScores.HideSelection = false;
-            this.listViewScores.Location = new System.Drawing.Point(0, 46);
+            this.listViewScores.Location = new System.Drawing.Point(0, 65);
             this.listViewScores.Name = "listViewScores";
-            this.listViewScores.Size = new System.Drawing.Size(651, 385);
+            this.listViewScores.Size = new System.Drawing.Size(1302, 551);
             this.listViewScores.TabIndex = 1;
             this.listViewScores.UseCompatibleStateImageBehavior = false;
             this.listViewScores.View = System.Windows.Forms.View.Details;
             // 
             // columnHeaderLevel
             // 
-            this.columnHeaderLevel.Text = "Уровень";
-            this.columnHeaderLevel.Width = 70;
+            this.columnHeaderLevel.Text = "УРОВЕНЬ";
+            this.columnHeaderLevel.Width = 200;
             // 
             // columnHeaderName
             // 
-            this.columnHeaderName.Text = "Имя";
+            this.columnHeaderName.Text = "ИМЯ";
             this.columnHeaderName.Width = 150;
             // 
             // columnHeaderScores
             // 
-            this.columnHeaderScores.Text = "Ходы";
-            this.columnHeaderScores.Width = 50;
+            this.columnHeaderScores.Text = "ХОДЫ";
+            this.columnHeaderScores.Width = 150;
             // 
             // columnHeaderResult
             // 
-            this.columnHeaderResult.Text = "Итог";
-            this.columnHeaderResult.Width = 200;
+            this.columnHeaderResult.Text = "ИТОГ";
+            this.columnHeaderResult.Width = 350;
             // 
             // FormScores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 431);
+            this.BackColor = System.Drawing.Color.Yellow;
+            this.ClientSize = new System.Drawing.Size(1302, 616);
             this.Controls.Add(this.listViewScores);
             this.Controls.Add(this.labelResults);
             this.Name = "FormScores";

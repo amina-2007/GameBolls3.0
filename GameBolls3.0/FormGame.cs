@@ -44,5 +44,10 @@ namespace GameBolls3._0
             FormScores frmS = new FormScores();
             frmS.ShowDialog();
         }
+
+        private void labelChooseLevel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

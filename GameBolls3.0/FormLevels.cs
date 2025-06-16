@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,8 @@ namespace GameBolls3._0
         public string claslevel;
         string[,] GameField = new string[6, 15];
         CreateField field = new CreateField();
+      
+
         ClassClick clas = new ClassClick();
 
         public FormLevels()
@@ -28,6 +31,7 @@ namespace GameBolls3._0
             field.ImgColumn = Bitmap.FromFile("Images/Column.png");
             field.ImgBottom = Bitmap.FromFile("Images/Bottom.png");
             field.ImgBlueBall = Bitmap.FromFile("Images/BlueBallon_100.png");
+        
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -42,7 +46,7 @@ namespace GameBolls3._0
                     bool RightPos = clas.IsPositionRight(GameField, claslevel, CurrentRow, CurrentColumn); 
                     if (RightPos)
                     {
-                        clas.CooseBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
+                        clas.ChooseBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
                     }
                     else MessageBox.Show("Нельзя так ходить!");
                 }
@@ -70,8 +74,8 @@ namespace GameBolls3._0
                 if (result == DialogResult.Yes)
                 {
                     steps = 0;
-                    field.BollColour(GameField, claslevel);
-                    field.drawField(dataGridView1, GameField, claslevel);
+                    field.BallColor(GameField, claslevel);
+                    field.DrawField(dataGridView1, GameField, claslevel);
                 }
             }
         }
@@ -79,8 +83,13 @@ namespace GameBolls3._0
         {
             dataGridView1.GridColor = Color.White;
             dataGridView1.Rows.Add(5);
-            field.BollColour( GameField, claslevel);
-            field.drawField(dataGridView1, GameField, claslevel);
+            field.BallColor( GameField, claslevel);
+            field.DrawField(dataGridView1, GameField, claslevel);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

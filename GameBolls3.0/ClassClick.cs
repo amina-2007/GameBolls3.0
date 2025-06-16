@@ -8,149 +8,102 @@ using System.Windows.Forms;
 
 namespace GameBolls3._0
 {
-    class ClassClick
+    public class ClassClick
     {
-        public Image ImgRedBall, ImgOrangeBall, ImgEmpty, ImgBlueBall;
-        //public string level;
+        public const string Level1 = "1";
+        public const string Level2 = "2";
+        public const string Level3 = "3";
+
+        public const string Empty = "N";
+        public const string RedBall = "R";
+        public const string OrangeBall = "O";
+        public const string BlueBall = "B";
+
+        private static readonly int[] ColumnsLevel1 = { 2, 6, 10 };
+        private static readonly int[] ColumnsLevel2And3 = { 2, 6, 10, 14 };
+        private static readonly int[] RowsLevel1And2 = { 2, 3, 4 };
+        private static readonly int[] RowsLevel3 = { 1, 2, 3, 4 };
+
+        private const int SelectedBallRow = 0;
+        private int SelectedBallColumn(string level) => level == Level1 ? 6 : 8;
+
+        private readonly Dictionary<string, Image> _ballImages = new Dictionary<string, Image>(); //Vmecto otdelnix peremennix 
+
         public ClassClick()
         {
-            ImgEmpty = Bitmap.FromFile("Images/Empty.png");
-            ImgRedBall = Bitmap.FromFile("Images/RedBaloon_100.png");
-            ImgOrangeBall = Bitmap.FromFile("Images/OrangeBaloon_100.png");
-            ImgBlueBall = Bitmap.FromFile("Images/BlueBallon_100.png");
+            _ballImages[Empty] = Bitmap.FromFile("Images/Empty.png");
+            _ballImages[RedBall] = Bitmap.FromFile("Images/RedBaloon_100.png");
+            _ballImages[OrangeBall] = Bitmap.FromFile("Images/OrangeBaloon_100.png");
+            _ballImages[BlueBall] = Bitmap.FromFile("Images/BlueBallon_100.png");
         }
-        
-        public bool IsColumnRight( int column, string level)
+
+        public bool IsColumnRight(int column, string level) =>
+            (level == Level1 ? ColumnsLevel1 : ColumnsLevel2And3).Contains(column);
+
+        public bool IsRowRight(int row, string level) =>
+            (level == Level3 ? RowsLevel3 : RowsLevel1And2).Contains(row);
+
+        public bool IsNoCurrentBall(string[,] gameField, string level) =>
+            gameField[SelectedBallRow, SelectedBallColumn(level)] == Empty;
+
+        public bool IsPositionRight(string[,] gameField, string level, int row, int column) =>
+            gameField[row - 1, column] == Empty || row == (level == Level3 ? 1 : 2);
+
+        public void ChooseBall(string level, DataGridView grid, string[,] gameField, int row, int column)
         {
-            if (level == "1")
-            {
-                if (column == 2 || column == 6 || column == 10) return true;
-                else return false;
-            }
-            else
-            {
-                if (column == 2 || column == 6 || column == 10 || column == 14) return true;
-                else return false;
-            }
+            int selectedColumn = SelectedBallColumn(level);
+            string ballType = gameField[row, column];
+
+            gameField[SelectedBallRow, selectedColumn] = ballType;
+            gameField[row, column] = Empty;
+
+            grid.Rows[row].Cells[column].Value = _ballImages[Empty];
+            grid.Rows[SelectedBallRow].Cells[selectedColumn].Value = _ballImages[ballType];
         }
-        public bool IsRowRight(int row, string level)
-        {
-            if (level == "3")
-            {
-                if (row == 2 || row == 3 || row == 4 || row == 1) return true;
-                else return false;
-            }
-            else
-            {
-                if (row == 2 || row == 3 || row == 4) return true;
-                else return false;
-            }
-        }
-        public bool IsNoCurrentBall(string[,] gameField, string level)
-        {
-            int n = 8;
-            if (level == "1") n = 6;
-            if (gameField[0, n] == "N") return true;
-            else return false;
-        }
-        public bool IsPositionRight(string[,] gameField, string level, int row, int column)
-        {
-            int n = 2;
-            if (level == "3") n = 1;
-            if (gameField[row - 1, column] == "N" || row == n) return true;
-            else return false;
-        }
-        public void CooseBall(string level, DataGridView grid, string[,] gameField, int row, int column)
-        {
-            int n = 8;
-            if (level == "1") n = 6;
-            string letter = gameField[row, column];
-            gameField[0, n] = gameField[row, column];
-            gameField[row, column] = "N";
-            switch (letter)
-            {
-                case "R":
-                    grid.Rows[row].Cells[column].Value = ImgEmpty;
-                    grid.Rows[0].Cells[n].Value = ImgRedBall; break;
-                case "O":
-                    grid.Rows[row].Cells[column].Value = ImgEmpty;
-                    grid.Rows[0].Cells[n].Value = ImgOrangeBall; break;
-                case "B":
-                    grid.Rows[row].Cells[column].Value = ImgEmpty;
-                    grid.Rows[0].Cells[n].Value = ImgBlueBall; break;
-            }
-        }
+
         public bool PlaceBall(string level, DataGridView grid, string[,] gameField, int row, int column)
         {
-            int n = 8;
-            if (level == "1") n = 6;
-            string letter = gameField[0, n];
-            switch (letter)
-            {
-                case "O":
-                    grid.Rows[row].Cells[column].Value = ImgOrangeBall;
-                    grid.Rows[0].Cells[n].Value = ImgEmpty; break;
-                case "R":
-                    grid.Rows[row].Cells[column].Value = ImgRedBall;
-                    grid.Rows[0].Cells[n].Value = ImgEmpty; break;
-                case "B":
-                    grid.Rows[row].Cells[column].Value = ImgBlueBall;
-                    grid.Rows[0].Cells[n].Value = ImgEmpty; break;
+            int selectedColumn = SelectedBallColumn(level);
+            string ballType = gameField[SelectedBallRow, selectedColumn];
 
-            }
-            gameField[row, column] = gameField[0, n];
-            gameField[0, n] = "N";
+            gameField[row, column] = ballType;
+            gameField[SelectedBallRow, selectedColumn] = Empty;
+
+            grid.Rows[row].Cells[column].Value = _ballImages[ballType];
+            grid.Rows[SelectedBallRow].Cells[selectedColumn].Value = _ballImages[Empty];
+
             return true;
         }
-        public bool IsFieldReady(string[,] GameField, string level)
+
+        public bool IsFieldReady(string[,] gameField, string level)
         {
-            bool ReadyColomnOne = GameField[2, 2] == GameField[3, 2] && GameField[2, 2] == GameField[4, 2] && GameField[3, 2] == GameField[4, 2] && GameField[3, 2] != "N";
-            bool ReadyColomnTwo = GameField[2, 6] == GameField[3, 6] && GameField[2, 6] == GameField[4, 6] && GameField[3, 6] == GameField[4, 6] && GameField[3, 6] != "N";
-            bool ReadyColomnThree = GameField[2, 10] == GameField[3, 10] && GameField[2, 10] == GameField[4, 10] && GameField[3, 10] == GameField[4, 10] && GameField[3, 10] != "N";
-            if (level == "1")
+            int requiredMatches = level == Level1 ? 2 : 3;
+            var columnsToCheck = level == Level1 ? ColumnsLevel1 : ColumnsLevel2And3;
+            var rowsToCheck = level == Level3 ? RowsLevel3 : RowsLevel1And2;
+
+            int matchedColumns = 0;
+
+            foreach (int col in columnsToCheck)
             {
-                if (ReadyColomnOne && ReadyColomnTwo || ReadyColomnOne && ReadyColomnThree || ReadyColomnThree && ReadyColomnTwo)
+                bool isColumnValid = true;
+                string firstBall = gameField[rowsToCheck[0], col];
+
+                if (firstBall == Empty) continue;
+
+                for (int i = 1; i < rowsToCheck.Length; i++)
                 {
+                    if (gameField[rowsToCheck[i], col] != firstBall)
+                    {
+                        isColumnValid = false;
+                        break;
+                    }
+                }
+
+                if (isColumnValid && ++matchedColumns >= requiredMatches)
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
             }
-            else
-            {
-                if (level == "2")
-                {
-                    bool ReadyColomnFour = GameField[2, 14] == GameField[3, 14] && GameField[2, 14] == GameField[4, 14] && GameField[3, 14] == GameField[4, 14] && GameField[3, 14] != "N";
-                    if (ReadyColomnOne && ReadyColomnTwo && ReadyColomnThree || ReadyColomnOne && ReadyColomnTwo && ReadyColomnFour
-                        || ReadyColomnOne && ReadyColomnThree && ReadyColomnFour || ReadyColomnTwo && ReadyColomnThree && ReadyColomnFour)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    bool ReadyColomnOne3 = GameField[2, 2] == GameField[3, 2] && GameField[2, 2] == GameField[4, 2] && GameField[3, 2] == GameField[4, 2] && GameField[2, 2] == GameField[1, 2] && GameField[3, 2] == GameField[1, 2] && GameField[1, 2] == GameField[4, 2] && GameField[3, 2] != "N";
-                    bool ReadyColomnTwo3 = GameField[2, 6] == GameField[3, 6] && GameField[2, 6] == GameField[4, 6] && GameField[3, 6] == GameField[4, 6] && GameField[2, 6] == GameField[1, 6] && GameField[3, 6] == GameField[1, 6] && GameField[1, 6] == GameField[4, 6] && GameField[3, 6] != "N";
-                    bool ReadyColomnThree3 = GameField[2, 10] == GameField[3, 10] && GameField[2, 10] == GameField[4, 10] && GameField[3, 10] == GameField[4, 10] && GameField[2, 10] == GameField[1, 10] && GameField[3, 10] == GameField[1, 10] && GameField[1, 10] == GameField[4, 10] && GameField[3, 10] != "N";
-                    bool ReadyColomnFour = GameField[2, 14] == GameField[3, 14] && GameField[2, 14] == GameField[4, 14] && GameField[3, 14] == GameField[4, 14] && GameField[2, 14] == GameField[1, 14] && GameField[3, 14] == GameField[1, 14] && GameField[1, 14] == GameField[4, 14] && GameField[3, 14] != "N";
-                    if (ReadyColomnOne3 && ReadyColomnTwo3 && ReadyColomnThree3 || ReadyColomnOne3 && ReadyColomnTwo3 && ReadyColomnFour
-                        || ReadyColomnOne3 && ReadyColomnThree3 && ReadyColomnFour || ReadyColomnTwo3 && ReadyColomnThree3 && ReadyColomnFour)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            
+
+            return false;
         }
     }
 }

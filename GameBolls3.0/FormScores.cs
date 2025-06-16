@@ -19,7 +19,7 @@ namespace GameBolls3._0
             InitializeComponent();
         }
 
-        static string result (int rightSteps, int currentSteps)
+       /* static string result (int rightSteps, int currentSteps)
         {
             if (Convert.ToInt32(currentSteps) >  rightSteps) return "Mожно лучше";
             else
@@ -27,32 +27,78 @@ namespace GameBolls3._0
                 if (Convert.ToInt32(currentSteps) == rightSteps) return "Хороший результат";
                 else return "Переиграл и уничтожил";
             }
-        }
+        }*/
         private void FormScores_Load(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader("GameResults.txt");
+            const string resultsFilePath = "GameResults.txt";
+
+            // Проверка существования файла
+            if (!File.Exists(resultsFilePath))
+            {
+                MessageBox.Show("Сегодня не поиграем", "Ошибка",
+                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                for (int i = 0; i < 20; i++)
+                // Чтение и обработка файла
+                using (var sr = new StreamReader(resultsFilePath))
                 {
-                    string[] temp = sr.ReadLine().Split('#');
-                    string res = "";
-                    int currentSteps = Convert.ToInt32(temp[2]);
-                    switch (temp[0])
+                    int counter = 0;//максимум нас столько
+                    while (!sr.EndOfStream && counter < 20)
                     {
-                        case "1": res = result(6, currentSteps); break;
+                        string line = sr.ReadLine();
+                        if (string.IsNullOrWhiteSpace(line)) continue;
 
-                        case "2": res = result(9, currentSteps); break;
+                        
+                        string[] data = line.Split('#');
+                        if (data.Length < 3) continue;
 
-                        case "3": res = result(21, currentSteps); break;
+                       
+                        string level = data[0];
+                        string playerName = data[1];
+                        if (!int.TryParse(data[2], out int steps)) continue;
 
+                        // Определение результата
+                        string result;
+                        if (level == "1")
+                        {
+                            result = steps <= 6 ? "СУПЕР" : "НОРМА";
+                        }
+                        else if (level == "2")
+                        {
+                            result = steps <= 9 ? "ОТЛИЧНО" : "НОРМАС";
+                        }
+                        else if (level == "3")
+                        {
+                            result = steps <= 16 ? "ПЕРЕИГРАЛ И УНИЧТОЖИЛ" : "НОРМАЛЬНО";
+                        }
+                        else
+                        {
+                            result = "МИНУС СТИПЕНДИЯ";
+                        }
+
+                        
+                        listViewScores.Items.Add(new ListViewItem(new[]
+                        {
+                    level,
+                    playerName,
+                    steps.ToString(),
+                    result
+                }));
+
+                        counter++;
                     }
-                    ListViewItem item = new ListViewItem(new string[] { temp[0], temp[1], temp[2], res });
-                    listViewScores.Items.Add(item);
                 }
             }
-            catch { sr.Close(); }
-            sr.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"УРА! ВСЕ ПОЛЕТЕЛО {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+            }
         }
     }
 }

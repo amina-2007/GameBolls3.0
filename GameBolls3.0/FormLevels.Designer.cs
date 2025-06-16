@@ -82,6 +82,7 @@ namespace GameBolls3._0
             this.dataGridView1.Size = new System.Drawing.Size(1064, 655);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column1
             // 
@@ -102,6 +103,7 @@ namespace GameBolls3._0
             this.Column3.HeaderText = "Column3";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
             // 
             // Column4
             // 
@@ -129,6 +131,7 @@ namespace GameBolls3._0
             this.Column7.HeaderText = "Column7";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
+            this.Column7.Width = 125;
             // 
             // Column8
             // 
@@ -142,6 +145,7 @@ namespace GameBolls3._0
             this.Column9.HeaderText = "Column9";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
+            this.Column9.Width = 125;
             // 
             // Column10
             // 
@@ -155,6 +159,7 @@ namespace GameBolls3._0
             this.Column11.HeaderText = "Column11";
             this.Column11.MinimumWidth = 6;
             this.Column11.Name = "Column11";
+            this.Column11.Width = 125;
             // 
             // Column12
             // 
@@ -184,6 +189,7 @@ namespace GameBolls3._0
             this.Column15.HeaderText = "Column15";
             this.Column15.MinimumWidth = 6;
             this.Column15.Name = "Column15";
+            this.Column15.Width = 125;
             // 
             // Column16
             // 
