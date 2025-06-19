@@ -77,7 +77,7 @@ namespace GameBolls3._0
             // columnHeaderName
             // 
             this.columnHeaderName.Text = "ИМЯ";
-            this.columnHeaderName.Width = 150;
+            this.columnHeaderName.Width = 200;
             // 
             // columnHeaderScores
             // 

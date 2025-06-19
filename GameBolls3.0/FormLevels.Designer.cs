@@ -79,7 +79,7 @@ namespace GameBolls3._0
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 100;
-            this.dataGridView1.Size = new System.Drawing.Size(1064, 655);
+            this.dataGridView1.Size = new System.Drawing.Size(1427, 655);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -202,10 +202,10 @@ namespace GameBolls3._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 655);
+            this.ClientSize = new System.Drawing.Size(1427, 655);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormLevels";
-            this.Text = "Лёгкий уровень сложности";
+            this.Text = "Колбочки";
             this.Load += new System.EventHandler(this.FormLevel1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

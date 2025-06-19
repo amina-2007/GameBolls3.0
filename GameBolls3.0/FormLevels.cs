@@ -14,36 +14,39 @@ namespace GameBolls3._0
     public partial class FormLevels : Form
     {
         int steps = 0;
-        //public string level /*= "1"*/;
         public string claslevel;
-        string[,] GameField = new string[6, 15];
-        CreateField field = new CreateField();
-      
+        string[,] GameField = new string[6, 16]; // Изменил размерность на [6,16] для соответствия новым классам
+
+        // Заменяем CreateField на два новых класса
+        RenderField renderer = new RenderField();
+        FieldsState fieldState = new FieldsState();
 
         ClassClick clas = new ClassClick();
 
         public FormLevels()
         {
             InitializeComponent();
-            field.ImgEmpty = Bitmap.FromFile("Images/Empty.png");
-            field.ImgRedBall = Bitmap.FromFile("Images/RedBaloon_100.png");
-            field.ImgOrangeBall = Bitmap.FromFile("Images/OrangeBaloon_100.png");
-            field.ImgColumn = Bitmap.FromFile("Images/Column.png");
-            field.ImgBottom = Bitmap.FromFile("Images/Bottom.png");
-            field.ImgBlueBall = Bitmap.FromFile("Images/BlueBallon_100.png");
-        
+            // Инициализация изображений теперь в FieldRenderer
+            renderer.ImgEmpty = Bitmap.FromFile("Images/Empty.png");
+            renderer.ImgRedBall = Bitmap.FromFile("Images/RedBaloon_100.png");
+            renderer.ImgOrangeBall = Bitmap.FromFile("Images/OrangeBaloon_100.png");
+            renderer.ImgColumn = Bitmap.FromFile("Images/Column.png");
+            renderer.ImgBottom = Bitmap.FromFile("Images/Bottom.png");
+            renderer.ImgBlueBall = Bitmap.FromFile("Images/BlueBallon_100.png");
         }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int CurrentColumn = e.ColumnIndex;
             int CurrentRow = e.RowIndex;
-            bool RightColumn = clas.IsColumnRight(CurrentColumn, claslevel); 
-            bool RighRow = clas.IsRowRight(CurrentRow, claslevel); 
+            bool RightColumn = clas.IsColumnRight(CurrentColumn, claslevel);
+            bool RighRow = clas.IsRowRight(CurrentRow, claslevel);
+
             if (RightColumn && RighRow)
             {
                 if (clas.IsNoCurrentBall(GameField, claslevel))
                 {
-                    bool RightPos = clas.IsPositionRight(GameField, claslevel, CurrentRow, CurrentColumn); 
+                    bool RightPos = clas.IsPositionRight(GameField, claslevel, CurrentRow, CurrentColumn);
                     if (RightPos)
                     {
                         clas.ChooseBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
@@ -52,10 +55,12 @@ namespace GameBolls3._0
                 }
                 else
                 {
-                    while (GameField[CurrentRow + 1, CurrentColumn] == "N")
+                    while (CurrentRow + 1 < GameField.GetLength(0) &&
+                           GameField[CurrentRow + 1, CurrentColumn] == "N")
                     {
                         CurrentRow += 1;
                     }
+
                     if (GameField[CurrentRow, CurrentColumn] == "N")
                     {
                         bool IsBallPlaced = clas.PlaceBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
@@ -64,27 +69,37 @@ namespace GameBolls3._0
                     else MessageBox.Show("Нельзя так ходить");
                 }
             }
-            if (clas.IsFieldReady(GameField,claslevel)) 
+
+            if (clas.IsFieldReady(GameField, claslevel))
             {
                 FormUserName formUserName = new FormUserName();
                 formUserName.steps = steps;
                 formUserName.level = claslevel;
                 formUserName.ShowDialog();
+
                 DialogResult result = MessageBox.Show("Обновить поле?", "Вы победили!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     steps = 0;
-                    field.BallColor(GameField, claslevel);
-                    field.DrawField(dataGridView1, GameField, claslevel);
+                    // Заменяем вызовы методов CreateField на новые классы
+                    fieldState.InitializeField(GameField, claslevel);
+                    renderer.DrawField(dataGridView1, GameField, claslevel);
+                }
+                if (result == DialogResult.No)
+                {
+                   // Form.Close();
                 }
             }
         }
+
         private void FormLevel1_Load(object sender, EventArgs e)
         {
             dataGridView1.GridColor = Color.White;
             dataGridView1.Rows.Add(5);
-            field.BallColor( GameField, claslevel);
-            field.DrawField(dataGridView1, GameField, claslevel);
+
+            // Инициализация поля с помощью новых классов
+            fieldState.InitializeField(GameField, claslevel);
+            renderer.DrawField(dataGridView1, GameField, claslevel);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

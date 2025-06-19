@@ -112,7 +112,7 @@ namespace GameBolls3._0
             this.Controls.Add(this.labelChooseLevel);
             this.Controls.Add(this.buttonShowScores);
             this.Name = "FormGame";
-            this.Text = "Игра КОЛБОЧКИ";
+            this.Text = "Главное меню";
             this.ResumeLayout(false);
             this.PerformLayout();
 
