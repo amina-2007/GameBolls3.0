@@ -21,7 +21,7 @@ namespace GameBolls3._0
         RenderField renderer = new RenderField();
         FieldsState fieldState = new FieldsState();
 
-        ClassClick clas = new ClassClick();
+        GameProcess process = new GameProcess();
 
         public FormLevels()
         {
@@ -39,17 +39,17 @@ namespace GameBolls3._0
         {
             int CurrentColumn = e.ColumnIndex;
             int CurrentRow = e.RowIndex;
-            bool RightColumn = clas.IsColumnRight(CurrentColumn, claslevel);
-            bool RighRow = clas.IsRowRight(CurrentRow, claslevel);
+            bool RightColumn = process.IsColumnRight(CurrentColumn, claslevel);
+            bool RighRow = process.IsRowRight(CurrentRow, claslevel);
 
             if (RightColumn && RighRow)
             {
-                if (clas.IsNoCurrentBall(GameField, claslevel))
+                if (process.IsNoCurrentBall(GameField, claslevel))
                 {
-                    bool RightPos = clas.IsPositionRight(GameField, claslevel, CurrentRow, CurrentColumn);
+                    bool RightPos = process.IsPositionRight(GameField, claslevel, CurrentRow, CurrentColumn);
                     if (RightPos)
                     {
-                        clas.ChooseBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
+                        process.ChooseBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
                     }
                     else MessageBox.Show("Нельзя так ходить!");
                 }
@@ -63,14 +63,14 @@ namespace GameBolls3._0
 
                     if (GameField[CurrentRow, CurrentColumn] == "N")
                     {
-                        bool IsBallPlaced = clas.PlaceBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
+                        bool IsBallPlaced = process.PlaceBall(claslevel, dataGridView1, GameField, CurrentRow, CurrentColumn);
                         if (IsBallPlaced) steps++;
                     }
                     else MessageBox.Show("Нельзя так ходить");
                 }
             }
 
-            if (clas.IsFieldReady(GameField, claslevel))
+            if (process.IsFieldReady(GameField, claslevel))
             {
                 FormUserName formUserName = new FormUserName();
                 formUserName.steps = steps;

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GameBolls3._0
 {
-    public class ClassClick
+    public class GameProcess
     {
         public const string Level1 = "1";
         public const string Level2 = "2";
@@ -29,7 +29,7 @@ namespace GameBolls3._0
 
         private readonly Dictionary<string, Image> _ballImages = new Dictionary<string, Image>(); //Vmecto otdelnix peremennix 
 
-        public ClassClick()
+        public GameProcess()
         {
             _ballImages[Empty] = Bitmap.FromFile("Images/Empty.png");
             _ballImages[RedBall] = Bitmap.FromFile("Images/RedBaloon_100.png");

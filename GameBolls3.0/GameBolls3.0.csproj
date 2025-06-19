@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="FieldsState.cs" />
     <Compile Include="RenderField.cs" />
-    <Compile Include="ClassClick.cs" />
+    <Compile Include="GameProcess.cs" />
     <Compile Include="FormGame.cs">
       <SubType>Form</SubType>
     </Compile>
